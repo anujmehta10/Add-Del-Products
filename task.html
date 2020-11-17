@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Task Management</title>
+	<link rel="stylesheet" href="">
+	<script>
+
+		var array=[];
+		var arr=[];
+		update=false;
+
+		function addfun(){
+
+			var ts;
+			ts=document.getElementById("task").value;
+
+			array.push(ts);
+			display();
+		}
+
+		function display(){
+			var row="";
+			 for (var i = 0; i <= array.length - 1; i++)
+			 {
+			 	row += "<tr>";
+			 	row +="<td><input type='checkbox' onclick='check(" +i +")'></td>";
+			 	row +=  "<td>" + array[i] + "</td>";
+			 	row += '<input type="text1" id="task1" name="task1" value="">';
+			 	row += "<td><button id='del' onclick='deletefun(" +i +")'>delete</button></td>";
+		        row += "<td><button id='edit' onclick='editfun(" + i + ")'>edit</button></td></tr>";
+ 
+			 }
+			 document.getElementById("result").innerHTML = row;
+
+		}
+
+		 function deletefun(i){
+		                array.splice(i,1);
+		                display();
+		            }
+		  function editfun(i) {
+		        var task1;
+		        var field= document.querySelector("#task1");
+		        if(field.value=="")
+		        {
+		        	document.getElementById("edit").innerHTML = "update";
+		        	field.value= array[i];
+		        }
+		        else 
+		        {
+		        	var data=field.value;
+		        	array[i]=data;
+		        	display();
+		        }
+		        
+		        j = i;
+		        update = true;
+		      }
+		      
+		      function check(i){
+		      	arr.push(array[i]);
+		      	array.splice(i,1);
+		      	display();
+		      	display1();
+		      }
+
+		      function display1(){
+			var row="";
+			 for (var i = 0; i <= arr.length - 1; i++)
+			 {
+			 	row += "<tr>";
+			 	row +="<td><input type='checkbox' onclick='chec(" +i +")'></td>";
+			 	row +=  "<td>" + arr[i] + "</td>";
+			 	row += '<input type="text1" id="task1" name="task1" value="">';
+			 	row += "<td><button id='del1' onclick='delfun(" +i +")'>delete</button></td>";
+		        row += "<td><button id='edit1' onclick='edifun(" + i + ")'>edit</button></td></tr>";
+ 
+			 }
+			 document.getElementById("show").innerHTML = row;
+			
+
+		}
+		function chec(i){
+		      	array.push(arr[i]);
+		      	arr.splice(i,1);
+		      	display1();
+		      	display();
+		      }
+		      function delfun(i){
+		                arr.splice(i,1);
+		                display1();
+		            }
+
+
+		 function edifun(i) {
+		        var task1;
+		        var field= document.querySelector("#task1");
+		        if(field.value=="")
+		        {
+		        	document.getElementById("edit1").innerHTML = "update";
+		        	field.value= arr[i];
+		        }
+		        else 
+		        {
+		        	var data=field.value;
+		        	arr[i]=data;
+		        	display1();
+		        }
+		        
+		        j = i;
+		        update = true;
+		      }            
+
+
+
+
+
+	</script>
+
+</head>
+<body>
+	<div id="parent">
+		<h2>Task Management</h2>
+		<label for="task">Add Task</label>
+		<input type="text" id="task" name="task" value="">
+		<button type="button" id="add" onclick="addfun()">Add Task</button>
+		<h3>Todo</h3>
+		<p><span id="result"></span></p>
+		<h3>Completed Tasks</h3>
+		<p><span id="show"></span></p>	
+
+	</div>
+</body>
+</html>	
